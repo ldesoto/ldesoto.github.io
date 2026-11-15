@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Descarga FanUno, tu app multideporte: LIDOM, MLB, NBA y más. Instálala una vez y recibe las actualizaciones dentro de la app.">
+  <meta name="theme-color" content="#0B1526">
+  <title>FanUno</title>
+  <style>
+    :root {
+      --bg: #0B1526;
+      --bg-elevated: #102038;
+      --card: #13233D;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #D32F2F;
+      --accent-hover: #EF3B3B;
+      --accent-pressed: #B71C1C;
+      --text: #F4F7FB;
+      --muted: #9AA8BC;
+      --faint: #6B7C93;
+      --disabled: #3A4A63;
+      --radius: 20px;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 500px at 50% -120px, rgba(211, 47, 47, 0.18), transparent 60%),
+        radial-gradient(800px 400px at 100% 100%, rgba(19, 80, 140, 0.18), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding: max(24px, env(safe-area-inset-top)) 20px max(32px, env(safe-area-inset-bottom));
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 28px 0 8px;
+    }
+
+    .mark {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      background: linear-gradient(160deg, #1A2E4D, #13233D);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+    }
+
+    .mark svg { display: block; }
+
+    h1 {
+      font-size: 2.15rem;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .version {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .notes {
+      margin-top: 10px;
+      color: var(--faint);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .notes.is-visible { display: block; }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 28px 0 8px;
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(211, 47, 47, 0.32);
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta:hover { background: var(--accent-hover); }
+    .cta:active { background: var(--accent-pressed); transform: translateY(1px); }
+
+    .cta.is-disabled,
+    .cta[aria-disabled="true"] {
+      background: var(--disabled);
+      color: #C5CED8;
+      box-shadow: none;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .card {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 16px;
+    }
+
+    ol.steps {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    ol.steps li {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .num {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .hint {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--card-border);
+      color: var(--faint);
+      font-size: 0.88rem;
+    }
+
+    .links {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      border-bottom: 1px solid rgba(154, 168, 188, 0.35);
+    }
+
+    .links a:hover { color: var(--text); }
+
+    footer {
+      margin-top: 36px;
+      text-align: center;
+      color: var(--faint);
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mark" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 8h14.5a6.5 6.5 0 0 1 0 13H16v7H8V8zm8 6.5h5.8a2.5 2.5 0 1 0 0-5H16v5z" fill="#F4F7FB"/>
+          <circle cx="27.5" cy="27.5" r="4.5" fill="#D32F2F"/>
+        </svg>
+      </div>
+      <h1>FanUno</h1>
+      <p class="tagline">Tu app multideporte: LIDOM, MLB, NBA y más</p>
+      <p class="version" id="version">Cargando versión…</p>
+      <p class="notes" id="notes"></p>
+    </header>
+
+    <a class="cta is-disabled" id="download" role="button" aria-disabled="true">Descargar FanUno</a>
+
+    <section class="card" aria-labelledby="install-title">
+      <h2 id="install-title">Cómo instalarla</h2>
+      <ol class="steps">
+        <li>
+          <span class="num">1</span>
+          <span>Toca <strong style="color:var(--text);font-weight:650">Descargar FanUno</strong> y guarda el archivo en tu teléfono.</span>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <span>Permite instalar apps de esta fuente si Android te lo pide (Ajustes → Instalar apps desconocidas).</span>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <span>Abre el APK e instala FanUno. A partir de ahí, la app se actualiza sola cuando haya una versión nueva.</span>
+        </li>
+      </ol>
+      <p class="hint">La primera vez basta con instalarla desde esta página. Las siguientes versiones aparecen dentro de la app.</p>
+    </section>
+
+    <p class="links">
+      <a href="https://ldesoto.github.io">Política de privacidad</a>
+    </p>
+
+    <footer>© 2026 Odin Forge</footer>
+  </div>
+
+  <script>
+    (function () {
+      var versionEl = document.getElementById("version");
+      var notesEl = document.getElementById("notes");
+      var button = document.getElementById("download");
+
+      function showSoon() {
+        versionEl.textContent = "Próximamente";
+        button.classList.add("is-disabled");
+        button.setAttribute("aria-disabled", "true");
+        button.removeAttribute("href");
+        notesEl.classList.remove("is-visible");
+        notesEl.textContent = "";
+      }
+
+      function isReady(data) {
+        var code = Number(data && data.versionCode);
+        var url = data && typeof data.apkUrl === "string" ? data.apkUrl.trim() : "";
+        return code > 0 && url.length > 0;
+      }
+
+      fetch("version.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("status");
+          return res.json();
+        })
+        .then(function (data) {
+          if (!isReady(data)) {
+            showSoon();
+            return;
+          }
+          versionEl.textContent = "Versión " + (data.versionName || data.versionCode);
+          button.href = data.apkUrl.trim();
+          button.classList.remove("is-disabled");
+          button.removeAttribute("aria-disabled");
+          var notes = (data.notes || "").trim();
+          if (notes) {
+            notesEl.textContent = notes;
+            notesEl.classList.add("is-visible");
+          }
+        })
+        .catch(function () {
+          showSoon();
+        });
+    })();
+  </script>
+</body>
+</html>
